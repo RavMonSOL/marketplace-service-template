@@ -29,6 +29,7 @@ import {
 } from './scrapers/linkedin-enrichment';
 import { getProfile, getPosts, analyzeProfile, analyzeImages, auditProfile } from './scrapers/instagram-scraper';
 import { searchReddit, getSubreddit, getTrending, getComments } from './scrapers/reddit-scraper';
+import { xRouter } from './routes/x-twitter';
 
 export const serviceRouter = new Hono();
 
@@ -1008,7 +1009,13 @@ serviceRouter.get('/reddit/thread/*', async (c) => {
 });
 
 // ═══════════════════════════════════════════════════════
-// ─── INSTAGRAM INTELLIGENCE + AI VISION API ─────────
+// ─── X/TWITTER REAL-TIME SEARCH API (Bounty #73) ───
+// ═══════════════════════════════════════════════════════
+
+serviceRouter.route('/x', xRouter);
+
+// ═══════════════════════════════════════════════════════
+// ─── INSTAGRAM INTELLIGENCE + AI VISION API (Bounty #69) ─────────
 // ═══════════════════════════════════════════════════════
 
 const IG_PROFILE_PRICE  = 0.01;   // $0.01 per profile lookup
